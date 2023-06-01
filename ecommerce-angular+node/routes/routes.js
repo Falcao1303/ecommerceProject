@@ -1,5 +1,5 @@
 const route = require('express').Router()
-const Produto = require('../controllers/produto')
+const Produto = require('../controllers/produto/produto-controller.js')
 
 
     route.get('/produto/',async  (req,res) =>{
