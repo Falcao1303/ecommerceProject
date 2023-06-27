@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const route = require('./routes/routes')
+const database = require('./models/connection')
 
 
 // Iniciar o servidor
