@@ -1,16 +1,12 @@
 const route = require('express').Router()
-const Produto = require('../controllers/produto/produto-controller.js')
+const usuarios = require('../controllers/usuarios/usuarios-controller.js')
+const tableModelUsuarios = require('../controllers/usuarios/transactions.js') 
 
 
-    route.get('/produto/',async  (req,res) =>{
-     const results = await tableModelProducts.listar();
-     res.status(200)
-     const serializeProduct = new ProductSerialize(
-        res.getHeader('Content-Type')
-    )
-    res.send(
-        serializeProduct.serialize(results) 
-    )         
+    route.get('/usuarios/',async  (req,res) =>{
+     const results = await tableModelUsuarios.listar();
+        res.status(200)
+        res.send(results);    
     })
     
     route.post('/',async(req,res,next)=>{

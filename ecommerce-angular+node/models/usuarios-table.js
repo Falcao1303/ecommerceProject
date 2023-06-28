@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
-const conexao = require ('./connections');
+const conexao = require ('./connection.js');
 
 
 
-const  usuarios = {
+const  Usuarios = {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement : true,
@@ -18,5 +18,5 @@ const  usuarios = {
     senha: Sequelize.STRING
 }
 
-module.exports = conexao.define('produto',usuarios);
+module.exports = conexao.define('usuarios',Usuarios);
  
