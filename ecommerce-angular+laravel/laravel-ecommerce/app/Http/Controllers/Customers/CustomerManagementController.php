@@ -9,17 +9,9 @@ use App\Models\Customers\CustomersModel;
 class CustomerManagementController extends Controller {
 
         private $_modelCostumers;
-        
+
         public function __construct() {
              $this->_modelCostumers = new CustomersModel();
-        }
-        
-        public function registerView() {
-                return view('customers/register');
-        }
-
-        public function listCostumersView() {
-                return view('customers/list');
         }
 
         public function listCustomers(Request $request) {
@@ -32,9 +24,9 @@ class CustomerManagementController extends Controller {
                 }
             }catch(\Exception $e){
                 return response()->json(['ERROR' => 'true', 'error' => $e->getMessage()]);
-            }  
+            }
         }
-        
+
         public function register(Request $request) {
           try{
                 $data = $request->all();
@@ -50,7 +42,7 @@ class CustomerManagementController extends Controller {
                 return response()->json(['SUCCESS' => 'true', 'count' => $this->_modelCostumers->countCostumers()]);
             }catch(\Exception $e){
                 return response()->json(['ERROR' => 'true', 'error' => $e->getMessage()]);
-            }  
+            }
         }
 
         public function updateCustomer(Request $request) {

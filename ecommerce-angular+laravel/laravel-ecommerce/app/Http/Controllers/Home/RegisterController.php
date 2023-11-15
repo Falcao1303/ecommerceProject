@@ -15,11 +15,6 @@ public function __construct(){
     $this->_modelUsers = new UsersModel();
 }
 
-public function index(){
-    return view('register');
-}
-
-
 public function getRegisters(){
     return $this->_modelUsers->getRegisters();
 }
@@ -36,6 +31,6 @@ public function saveRegister(Request $request){
         return response()->json(['status' => 'error', 'message' => 'Register failed']);
     }
 }
-    
+
 }
 

@@ -14,8 +14,4 @@ public function __construct(){
      $this->_modelUsers = new UsersModel();
 }
 
-public function indexDashboard(){
-        return view('dashboard');
-}
-
 }

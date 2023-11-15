@@ -15,10 +15,6 @@ public function __construct(){
      $this->_modelUsers = new UsersModel();
 }
 
-public function index(){
-        return view('login');
-}
-
 
 public function getUser(Request $request){
         try{
@@ -35,5 +31,5 @@ public function getUser(Request $request){
         }catch(\Exception $e){
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
         }
-    }   
+    }
 }
