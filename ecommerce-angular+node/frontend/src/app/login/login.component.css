@@ -1,0 +1,52 @@
+body {
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  height: 100vh;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.card {
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 2px rgba(25,25,25,.1);
+}
+.card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-top-left-radius: calc(20px - 1px);
+  border-top-right-radius: calc(20px - 1px);
+}
+body {
+  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  height: 100vh;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.card {
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 2px rgba(25,25,25,.1);
+}
+.card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  border-top-left-radius: calc(20px - 1px);
+  border-top-right-radius: calc(20px - 1px);
+}
+
+.msg-login {
+  margin-top: 10px;
+}
+#btn-login {
+  margin-top : 10px;
+  width: 100%;
+  background-color: #007bff;
+  border: none;
+}
+
+#btn-login:hover {
+  background-color: #0056b3;
+}
