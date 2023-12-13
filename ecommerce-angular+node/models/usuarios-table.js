@@ -2,8 +2,6 @@ const Sequelize = require('sequelize');
 const conexao = require ('./connection.js');
 
 
-
-
 const Usuarios = conexao.define('usuarios', {
     id: {
         type: Sequelize.INTEGER,
@@ -15,8 +13,26 @@ const Usuarios = conexao.define('usuarios', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: Sequelize.STRING,
-    senha: Sequelize.STRING
+    cpf: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    telefone: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    data_nascimento: {
+        type: Sequelize.DATE,
+        allowNull: false
+    },
+    login: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    senha: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 }, {
     timestamps: false
 });

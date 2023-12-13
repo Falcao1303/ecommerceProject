@@ -9,6 +9,14 @@ const database = require('./models/connection')
 
 app.use('/api/', route)
 
-app.listen(3000, () => {
-  console.log('Servidor iniciado na porta 3000');
-});
+
+database.authenticate()
+  .then(() => {
+    console.log('Conexão com o banco de dados bem-sucedida!');
+    app.listen(3000, () => {
+      console.log('Servidor iniciado na porta 3000');
+    });
+  })
+  .catch(err => {
+    console.error('Não foi possível conectar ao banco de dados:', err);
+  });
