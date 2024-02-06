@@ -1,4 +1,5 @@
 const Model = require('../../models/usuarios-table.js')
+const notFound = require('../../libs/clienteNotFoundError.js')
 
 module.exports = {
     listar(){
@@ -17,7 +18,7 @@ module.exports = {
         })
 
         if (!encontrado){
-            throw new NotFound()
+            throw new notFound();
         }
 
         return encontrado

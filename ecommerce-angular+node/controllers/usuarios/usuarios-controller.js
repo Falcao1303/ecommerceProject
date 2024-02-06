@@ -1,32 +1,30 @@
-
 class Usuarios {
-    constructor({ id, nome, email, senha}){
-        this.id = id
-        this.nome = nome
-        this.email = email
-        this.senha = senha
+    constructor({ id, nome, email, senha }) {
+      this.id = id;
+      this.nome = nome;
+      this.email = email;
+      this.senha = senha;
     }
-
-    async criar(){
-
+  
+    static validar(usuario) {
+      // Validação do usuário
     }
-
-    async carregar(){
-
+  
+    async criar() {
+      // Operação assíncrona de criação de usuário
     }
-
-    async atualizar(){
-
+  
+    async carregar() {
+      // Operação assíncrona de carregamento de usuário
     }
-
-    remover(){
-
+  
+    async atualizar() {
+      // Operação assíncrona de atualização de usuário
     }
-
-    validar(){
-
+  
+    remover() {
+      // Remoção do usuário
     }
-
-}
-
-module.exports = Usuarios
+  }
+  
+  module.exports = Usuarios;

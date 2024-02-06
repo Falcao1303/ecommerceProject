@@ -8,6 +8,23 @@ const tableModelUsuarios = require('../controllers/usuarios/transactions.js')
         res.status(200)
         res.send(results);    
     })
+
+    route.get('/usuarios/:idUsuario',async(req,res,next)=>{
+        try{
+            const id = req.params.idUsuario;
+            const UserId = await tableModelUsuarios.findId(id)
+            res.status(200)
+            // const serializeProduct = new ProductSerialize(
+            //     res.getHeader('Content-Type')
+            // )
+            res.send(
+                UserId
+            )
+        }catch(erro){
+            next(erro)
+        }
+    })
+
     
     route.post('/',async(req,res,next)=>{
         try{
