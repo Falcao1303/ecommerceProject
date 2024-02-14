@@ -1,21 +1,34 @@
+const UsuarioTransactions = require ('../usuarios/transactions-controller.js')
+
+
 class Usuarios {
-    constructor({ id, nome, email, senha }) {
+    constructor({ id, nome, cpf, telefone, data_nascimento, login, senha }) {
       this.id = id;
       this.nome = nome;
-      this.email = email;
+      this.cpf = cpf;
+      this.telefone = telefone;
+      this.data_nascimento = data_nascimento;
+      this.login = login;
       this.senha = senha;
     }
   
     static validar(usuario) {
-      // Validação do usuário
     }
   
     async criar() {
-      // Operação assíncrona de criação de usuário
+
     }
   
     async carregar() {
-      // Operação assíncrona de carregamento de usuário
+      const usuarioEncontrado = await UsuarioTransactions.findId(this.id)
+      
+      this.id = usuarioEncontrado.id
+      this.nome = usuarioEncontrado.nome
+      this.cpf = usuarioEncontrado.cpf
+      this.telefone = usuarioEncontrado.telefone
+      this.data_nascimento = usuarioEncontrado.data_nascimento
+      this.login = usuarioEncontrado.login
+      this.senha = usuarioEncontrado.senha
     }
   
     async atualizar() {

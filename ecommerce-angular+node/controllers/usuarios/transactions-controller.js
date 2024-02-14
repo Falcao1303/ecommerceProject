@@ -1,13 +1,13 @@
-const Model = require('../../models/usuarios-table.js')
-const notFound = require('../../libs/clienteNotFoundError.js')
+const Model = require('../../models/usuarios-table')
+const notFound = require('../../libs/clienteNotFoundError')
 
 module.exports = {
     listar(){
         return Model.findAll();
     },
 
-    inserir(produto){
-        return Model.create(produto);
+    inserir(usuario){
+        return Model.create(usuario);
     },
 
     async findId(id){

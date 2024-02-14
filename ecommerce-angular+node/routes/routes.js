@@ -1,10 +1,10 @@
 const route = require('express').Router()
-const usuarios = require('../controllers/usuarios/usuarios-controller.js')
-const tableModelUsuarios = require('../controllers/usuarios/transactions.js') 
+const transactionsUsuarios = require('../controllers/usuarios/transactions-controller.js') 
+const UsuariosController = require('../controllers/usuarios/usuarios-controller')
 
 
     route.get('/usuarios/',async  (req,res) =>{
-     const results = await tableModelUsuarios.listar();
+     const results = await transactionsUsuarios.listar();
         res.status(200)
         res.send(results);    
     })
@@ -12,29 +12,24 @@ const tableModelUsuarios = require('../controllers/usuarios/transactions.js')
     route.get('/usuarios/:idUsuario',async(req,res,next)=>{
         try{
             const id = req.params.idUsuario;
-            const UserId = await tableModelUsuarios.findId(id)
-            res.status(200)
-            // const serializeProduct = new ProductSerialize(
-            //     res.getHeader('Content-Type')
-            // )
-            res.send(
-                UserId
-            )
+            const usuarioBusca = new UsuariosController ({ id: id }); // Corrigindo o nome da classe para maiúscula
+            await usuarioBusca.carregar();
+            res.status(200).json(usuarioBusca);
         }catch(erro){
             next(erro)
         }
+        
     })
 
     
-    route.post('/',async(req,res,next)=>{
+    route.post('/usuarios/createUser/',async(req,res,next)=>{
         try{
             const dados = req.body
-            const produto = new Produto(dados)
-             await produto.criar()
+            await transactionsUsuarios.inserir(dados)
              res.status(201)
-             const serializeProduct = new ProductSerialize(
-                res.getHeader('Content-Type')
-            )
+            //  const serializeProduct = new ProductSerialize(
+            //     res.getHeader('Content-Type')
+            // )
              res.send(
                 serializeProduct.serialize(produto) 
              )      

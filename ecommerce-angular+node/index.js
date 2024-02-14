@@ -8,6 +8,7 @@ const database = require('./models/connection')
 
 
 app.use('/api/', route)
+app.use(express.json());
 
 
 database.authenticate()
