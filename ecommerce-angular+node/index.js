@@ -2,13 +2,16 @@ const express = require('express');
 const app = express();
 const route = require('./routes/routes')
 const database = require('./models/connection')
+const bodyParser = require('body-parser');
+
+
+app.use(bodyParser.json());
 
 
 // Iniciar o servidor
 
 
 app.use('/api/', route)
-app.use(express.json());
 
 
 database.authenticate()

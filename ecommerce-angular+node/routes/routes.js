@@ -22,17 +22,11 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller'
     })
 
     
-    route.post('/usuarios/createUser/',async(req,res,next)=>{
+    route.post('/usuarios/createUser',async(req,res,next)=>{
         try{
             const dados = req.body
             await transactionsUsuarios.inserir(dados)
-             res.status(201)
-            //  const serializeProduct = new ProductSerialize(
-            //     res.getHeader('Content-Type')
-            // )
-             res.send(
-                serializeProduct.serialize(produto) 
-             )      
+            res.status(201).json({ message: "Usuário criado com sucesso" });
         }catch(erro){
             next(erro)
         }

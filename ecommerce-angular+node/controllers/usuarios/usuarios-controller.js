@@ -1,4 +1,5 @@
-const UsuarioTransactions = require ('../usuarios/transactions-controller.js')
+const UsuarioTransactions = require ('../usuarios/transactions-controller')
+const InvalidData = require ('../../libs/invalidData')
 
 
 class Usuarios {
@@ -12,11 +13,17 @@ class Usuarios {
       this.senha = senha;
     }
   
-    static validar(usuario) {
-    }
-  
     async criar() {
-
+      this.validar();
+      const results = await UsuarioTransactions.inserir({
+        nome : this.nome,
+        cpf  : this.cpf,
+        telefone :this.telefone,
+        data_nascimento :this.data_nascimento,
+        login : this.login,
+        senha : this.senha,
+      })
+      this.id = results.id
     }
   
     async carregar() {
@@ -38,6 +45,16 @@ class Usuarios {
     remover() {
       // Remoção do usuário
     }
+
+    validar(){
+      const campos = ['nome', 'cpf', 'telefone','data_nascimento','login','senha']
+      campos.forEach(campo=> {
+          const valor = this[campo];
+          if(valor === undefined || valor.length < 3){
+              throw new InvalidData(campo);
+          }
+          });
+  }
   }
   
   module.exports = Usuarios;
