@@ -39,11 +39,25 @@ class Usuarios {
     }
   
     async atualizar() {
-      // Operação assíncrona de atualização de usuário
+      await UsuarioTransactions.findId(this.id)
+      const campos = ['nome', 'cpf', 'telefone','data_nascimento','login','senha']
+      const dadosAtualizar = {}
+
+      campos.forEach((campo) => {
+          const valor = this[campo]
+          if(valor !== undefined){
+              dadosAtualizar[campo] = valor
+          }
+      })
+
+      if(Object.keys(dadosAtualizar).length === 0){
+       throw new DataNotFound();
+      }
+      await UsuarioTransactions.atualizar(this.id, dadosAtualizar)
     }
   
     remover() {
-      // Remoção do usuário
+      return UsuarioTransactions.remover(this.id)
     }
 
     validar(){

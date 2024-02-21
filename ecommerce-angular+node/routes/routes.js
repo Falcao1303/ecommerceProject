@@ -12,7 +12,7 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller'
     route.get('/usuarios/:idUsuario',async(req,res,next)=>{
         try{
             const id = req.params.idUsuario;
-            const usuarioBusca = new UsuariosController ({ id: id }); // Corrigindo o nome da classe para maiúscula
+            const usuarioBusca = new UsuariosController ({ id: id }); 
             await usuarioBusca.carregar();
             res.status(200).json(usuarioBusca);
         }catch(erro){
@@ -33,30 +33,14 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller'
 
     })
 
-    route.get('/produto/:idProduto',async(req,res,next)=>{
-        try{
-            const id = req.params.idProduto
-            const produto = new Produto({ id : id})
-            await produto.carregar()
-            res.status(200)
-            const serializeProduct = new ProductSerialize(
-                res.getHeader('Content-Type')
-            )
-            res.send(
-                serializeProduct.serialize(produto) 
-            )
-        }catch(erro){
-            next(erro)
-        }
-    })
 
-    route.put('/produto/:idProduto',async(req,res,next)=>{
+    route.put('/usuarios/:idUsuario',async(req,res,next)=>{
         try{
-            const id = req.params.idProduto
+            const id = req.params.idUsuario
             const dadosRecebidos = req.body
             const dados = Object.assign({},dadosRecebidos,{id : id})
-            const produto = new Produto(dados)
-            await produto.atualizar()
+            const usuario = new UsuariosController(dados)
+            await usuario.atualizar()
             res.status(204)
             res.end()
         }catch(erro){
@@ -64,12 +48,12 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller'
         }
     })
 
-    route.delete('/produto/:idProduto',async(req,res,next)=>{
+    route.delete('/usuarios/:idUsuario',async(req,res,next)=>{
         try{
-            const id = req.params.idProduto
-            const produto = new Produto({ id : id})
-            await produto.carregar()
-            await produto.remover()
+            const id = req.params.idUsuario
+            const usuario = new UsuariosController({ id : id})
+            await usuario.carregar()
+            await usuario.remover()
             res.status(204)
             res.end()
         }catch(erro){
