@@ -1,13 +1,15 @@
 const UsuarioTransactions = require ('../usuarios/transactions-controller')
 const InvalidData = require ('../../libs/invalidData')
+const bcrypt = require('bcrypt');
 
 
 class Usuarios {
-    constructor({ id, nome, cpf, telefone, data_nascimento, login, senha }) {
+    constructor({ id, nome, cpf, telefone, email, data_nascimento, login, senha }) {
       this.id = id;
       this.nome = nome;
       this.cpf = cpf;
       this.telefone = telefone;
+      this.email = email;
       this.data_nascimento = data_nascimento;
       this.login = login;
       this.senha = senha;
@@ -15,10 +17,23 @@ class Usuarios {
   
     async criar() {
       this.validar();
+
+      let usuarioExistente = await UsuarioTransactions.findUser(this.email,this.login)
+      console.log(usuarioExistente.login,"------",this.login)
+      if (usuarioExistente) {
+        if (usuarioExistente.email === this.email) {
+            throw new Error('Já existe um usuário cadastrado com esse e-mail!')
+        } else if (usuarioExistente.login === this.login) {
+            throw new Error('Login indisponível para cadastro!')
+        }
+      }
+
+      
       const results = await UsuarioTransactions.inserir({
         nome : this.nome,
         cpf  : this.cpf,
         telefone :this.telefone,
+        email: this.email,
         data_nascimento :this.data_nascimento,
         login : this.login,
         senha : this.senha,
@@ -33,6 +48,7 @@ class Usuarios {
       this.nome = usuarioEncontrado.nome
       this.cpf = usuarioEncontrado.cpf
       this.telefone = usuarioEncontrado.telefone
+      this.email = usuarioEncontrado.email
       this.data_nascimento = usuarioEncontrado.data_nascimento
       this.login = usuarioEncontrado.login
       this.senha = usuarioEncontrado.senha
@@ -61,7 +77,7 @@ class Usuarios {
     }
 
     validar(){
-      const campos = ['nome', 'cpf', 'telefone','data_nascimento','login','senha']
+      const campos = ['nome', 'cpf', 'telefone','email','data_nascimento','login','senha']
       campos.forEach(campo=> {
           const valor = this[campo];
           if(valor === undefined || valor.length < 3){

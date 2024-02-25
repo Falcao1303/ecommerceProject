@@ -10,6 +10,15 @@ module.exports = {
         return Model.create(usuario);
     },
 
+    async findUser(email,login) {
+        const encontrado = await Model.findOne({ $or: 
+                                                [{ login },
+                                                { email }] });
+         console.log("encontrado",encontrado);                                       
+        return encontrado
+
+    },
+
     async findId(id){
         const encontrado = await Model.findOne({
             where :{
