@@ -1,4 +1,5 @@
 const Model = require('../../models/usuarios-table')
+const { Op } = require('sequelize');
 const notFound = require('../../libs/clienteNotFoundError')
 
 module.exports = {
@@ -11,10 +12,14 @@ module.exports = {
     },
 
     async findUser(email,login) {
-        const encontrado = await Model.findOne({ $or: 
-                                                [{ login },
-                                                { email }] });
-         console.log("encontrado",encontrado);                                       
+        const encontrado = await Model.findOne({ 
+            where: { 
+                [Op.or]: [
+                    { login: login },
+                    { email: email }
+                ]
+            }
+        });                                     
         return encontrado
 
     },
