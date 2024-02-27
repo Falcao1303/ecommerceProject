@@ -17,9 +17,8 @@ class Usuarios {
   
     async criar() {
       this.validar();
-
+      console.log("------",this.login)
       let usuarioExistente = await UsuarioTransactions.findUser(this.email,this.login)
-      console.log(usuarioExistente.login,"------",this.login)
       if (usuarioExistente) {
         if (usuarioExistente.email === this.email) {
             throw new Error('Já existe um usuário cadastrado com esse e-mail!')
@@ -28,7 +27,9 @@ class Usuarios {
         }
       }
 
-      
+      const hashedSenha = await bcrypt.hash(this.senha, 10);
+      console.log(hashedSenha)
+
       const results = await UsuarioTransactions.inserir({
         nome : this.nome,
         cpf  : this.cpf,
@@ -36,7 +37,7 @@ class Usuarios {
         email: this.email,
         data_nascimento :this.data_nascimento,
         login : this.login,
-        senha : this.senha,
+        senha : hashedSenha,
       })
       this.id = results.id
     }
