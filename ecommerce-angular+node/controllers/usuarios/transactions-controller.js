@@ -11,7 +11,8 @@ module.exports = {
         return Model.create(usuario);
     },
 
-    async findUser(email,login) {
+    async findUser(email, login) {
+
         const encontrado = await Model.findOne({ 
             where: { 
                 [Op.or]: [
@@ -19,9 +20,19 @@ module.exports = {
                     { email: email }
                 ]
             }
-        });                                     
+        });                                  
         return encontrado
+    },
 
+    async findUserLogin(login) {
+
+        const encontrado = await Model.findOne({ 
+            where: { 
+                login: login   
+            },
+            attributes: ['id', 'nome', 'email', 'login', 'senha']
+        });                                  
+        return encontrado
     },
 
     async findId(id){

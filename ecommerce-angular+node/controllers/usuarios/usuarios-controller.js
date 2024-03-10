@@ -1,7 +1,7 @@
 const UsuarioTransactions = require ('../usuarios/transactions-controller')
 const InvalidData = require ('../../libs/invalidData')
 const bcrypt = require('bcrypt');
-
+const jwt = require('jsonwebtoken');
 
 class Usuarios {
     constructor({ id, nome, cpf, telefone, email, data_nascimento, login, senha }) {
@@ -17,7 +17,7 @@ class Usuarios {
   
     async criar() {
       this.validar();
-      console.log("------",this.login)
+
       let usuarioExistente = await UsuarioTransactions.findUser(this.email,this.login)
       if (usuarioExistente) {
         if (usuarioExistente.email === this.email) {
@@ -28,7 +28,6 @@ class Usuarios {
       }
 
       const hashedSenha = await bcrypt.hash(this.senha, 10);
-      console.log(hashedSenha)
 
       const results = await UsuarioTransactions.inserir({
         nome : this.nome,
@@ -73,6 +72,29 @@ class Usuarios {
       await UsuarioTransactions.atualizar(this.id, dadosAtualizar)
     }
   
+    async login_account() {
+      let usuarioCadastrado = await UsuarioTransactions.findUserLogin(this.login);
+      const senha = this.senha;
+    
+      if (!usuarioCadastrado) {
+        throw new Error("Credenciais inválidas");
+      }
+    
+      // Verificar se a senha está correta
+      const senhaCorreta = await bcrypt.compare(senha, usuarioCadastrado.senha);
+    
+      if (!senhaCorreta) {
+        throw new Error("Credenciais inválidas");
+      }
+
+      // Gerar token JWT
+      const token = jwt.sign({ id: usuarioCadastrado.id, email: usuarioCadastrado.email }, process.env.SESSION_KEY, { expiresIn: '1h' });
+
+      this.token = token;
+
+      return usuarioCadastrado; // Retorna o objeto usuario com o token
+    }
+
     remover() {
       return UsuarioTransactions.remover(this.id)
     }
@@ -85,7 +107,7 @@ class Usuarios {
               throw new InvalidData(campo);
           }
           });
-  }
+    }
   }
   
   module.exports = Usuarios;

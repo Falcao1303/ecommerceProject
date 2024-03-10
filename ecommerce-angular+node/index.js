@@ -3,13 +3,18 @@ const app = express();
 const route = require('./routes/routes')
 const database = require('./models/connection')
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 
 app.use(bodyParser.json());
 
 
-// Iniciar o servidor
-
+// Configuração do middleware de sessão
+app.use(session({
+    secret: process.env.SESSION_KEY, // Defina sua chave secreta aqui
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/api/', route)
 
