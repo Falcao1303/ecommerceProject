@@ -40,7 +40,6 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller'
             const usuario = new UsuariosController({login: login,senha: senha})
             await usuario.login_account()
             req.session.usuarioId = usuario.login;
-
             res.json(usuario);
         } catch (error) {
             next(error)

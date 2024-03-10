@@ -91,8 +91,6 @@ class Usuarios {
       const token = jwt.sign({ id: usuarioCadastrado.id, email: usuarioCadastrado.email }, process.env.SESSION_KEY, { expiresIn: '1h' });
 
       this.token = token;
-
-      return usuarioCadastrado; // Retorna o objeto usuario com o token
     }
 
     remover() {
