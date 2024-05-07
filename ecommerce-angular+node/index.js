@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const route = require('./routes/routes')
+const produto_route = require('./routes/produto-routes')
 const database = require('./models/connection')
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -17,6 +18,7 @@ app.use(session({
 }));
 
 app.use('/api/', route)
+app.use('/produto/',produto_route);
 
 
 database.authenticate()
