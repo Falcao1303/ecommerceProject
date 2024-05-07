@@ -10,5 +10,10 @@ const produtosController = require('../controllers/usuarios/usuarios-controller'
         res.send(results);    
     })
 
+    route.post('/saveProduto/',async(req,res)=>{
+        const dados = req.body;
+
+    })
+
 module.exports = route
 
