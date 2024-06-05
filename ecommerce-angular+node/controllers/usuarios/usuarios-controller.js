@@ -1,4 +1,4 @@
-const UsuarioTransactions = require ('../usuarios/transactions-controller')
+const UsuarioTransactions = require ('../../models/usuario/transactions')
 const InvalidData = require ('../../libs/invalidData')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');

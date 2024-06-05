@@ -1,39 +1,35 @@
 const Sequelize = require('sequelize');
-const conexao = require ('./connection.js');
+const conexao = require ('../connection.js');
 
 
-const Usuarios = conexao.define('usuarios', {
-    id: {
+const Produtos = conexao.define('produtos', {
+    idproduto: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    nome: {
+    codigo_cor: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    codigo_voltagem: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    descricao: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    cpf: {
+    descricao_completa: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    telefone: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    data_nascimento: {
+    data_cadastro: {
         type: Sequelize.DATE,
         allowNull: false
     },
-    login: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    senha: {
+    ativo: {
         type: Sequelize.STRING,
         allowNull: false
     }
@@ -41,5 +37,4 @@ const Usuarios = conexao.define('usuarios', {
     timestamps: false
 });
 
-module.exports = Usuarios;
- 
+module.exports = Produtos;

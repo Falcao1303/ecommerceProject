@@ -1,4 +1,4 @@
-const Model = require('../../models/usuarios-table')
+const Model = require('../usuario/usuarios-table')
 const { Op } = require('sequelize');
 const notFound = require('../../libs/clienteNotFoundError')
 

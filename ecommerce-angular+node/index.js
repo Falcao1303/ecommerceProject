@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const route = require('./routes/routes')
+const usuarios_route = require('./routes/usuario-routes')
 const produto_route = require('./routes/produto-routes')
 const database = require('./models/connection')
 const bodyParser = require('body-parser');
@@ -17,7 +17,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use('/api/', route)
+app.use('/api/', usuarios_route)
 app.use('/produto/',produto_route);
 
 

@@ -1,6 +1,6 @@
 const route = require('express').Router()
-const transactionsUsuarios = require('../controllers/usuarios/transactions-controller.js') 
-const UsuariosController = require('../controllers/usuarios/usuarios-controller')
+const transactionsUsuarios = require('../models/usuario/transactions.js') 
+const UsuariosController = require('../controllers/usuarios/usuarios-controller.js')
 
 
 
