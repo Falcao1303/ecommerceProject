@@ -34,7 +34,7 @@ const Produtos = conexao.define('produtos', {
         allowNull: false
     }
 }, {
-    timestamps: false
+    timestamps: true
 });
 
 module.exports = Produtos;
