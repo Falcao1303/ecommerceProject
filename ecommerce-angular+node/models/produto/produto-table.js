@@ -3,7 +3,7 @@ const conexao = require ('../connection.js');
 
 
 const Produtos = conexao.define('produtos', {
-    idproduto: {
+    id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
