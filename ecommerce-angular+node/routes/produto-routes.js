@@ -1,5 +1,4 @@
 const route = require('express').Router()
-const transactionsProdutos = require('../models/usuario/transactions.js') 
 const produtosController = require('../controllers/produtos/produtos-controller')
 
 
@@ -14,7 +13,6 @@ const produtosController = require('../controllers/produtos/produtos-controller'
     route.post('/saveProduto/',async(req, res, next)=>{
         try{
             const dados = req.body
-            console.log("dados",dados);
             const produto = new produtosController(dados)
             await produto.criar()
             res.status(201).json({ message: "Produto criado com sucesso" });

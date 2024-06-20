@@ -1,6 +1,6 @@
 const Model = require('../produto/produto-table')
 const { Op } = require('sequelize');
-const notFound = require('../../libs/clienteNotFoundError')
+const notFound = require('../../libs/produtoNotFoundError')
 
 module.exports = {
     listar(){
@@ -8,7 +8,6 @@ module.exports = {
     },
 
     inserir(produto){
-        console.log("produto",produto)
         return Model.create(produto);
     },
 
@@ -20,35 +19,22 @@ module.exports = {
                     codigo_cor ? { codigo_cor } : null,
                     codigo_voltagem ? { codigo_voltagem } : null,
                     descricao ? { descricao: { [Op.like]: `%${descricao}%` } } : null
-                ].filter(Boolean) // Remove entradas nulas do array
+                ].filter(Boolean)
             }
         };
 
         const encontrado = await Model.findAll(query);
-        return encontrado;
+        return encontrado; 
     },
 
-    async findUserLogin(login) {
-
-        const encontrado = await Model.findOne({ 
-            where: { 
-                login: login   
-            },
-            attributes: ['id', 'nome', 'email', 'login', 'senha']
-        });                                  
-        return encontrado
-    },
 
     async findId(id){
+
         const encontrado = await Model.findOne({
             where :{
-                id: id 
+                id: id.id
             }
         })
-
-        if (!encontrado){
-            throw new notFound();
-        }
 
         return encontrado
     },

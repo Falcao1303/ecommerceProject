@@ -15,7 +15,11 @@ class Produtos {
   
     async criar() {
       this.validar();
+      const codexistente = await ProdutoTransactions.findId({ id: this.id })
 
+        if (codexistente) {
+            throw new Error('Produto já cadastrado');
+        }
 
       const results = await ProdutoTransactions.inserir({
         id: this.id,
@@ -33,7 +37,7 @@ class Produtos {
       
         if (produtoEncontrado) {
             return produtoEncontrado.map(produto => ({
-                id: produto.idproduto,
+                id: produto.id,
                 codigo_cor: produto.codigo_cor,
                 codigo_voltagem: produto.codigo_voltagem,
                 descricao: produto.descricao,
