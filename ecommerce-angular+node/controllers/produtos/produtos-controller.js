@@ -1,4 +1,4 @@
-const ProdutoTransactions = require ('../../models/produto/transactions')
+const ProdutoTransactions = require ('../../models/produto/tables/transactions')
 const InvalidData = require ('../../libs/invalidData')
 
 

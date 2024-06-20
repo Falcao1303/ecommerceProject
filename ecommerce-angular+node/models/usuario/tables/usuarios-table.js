@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const conexao = require ('../connection.js');
+const conexao = require ('../../connection.js');
 
 
 const Usuarios = conexao.define('usuarios', {

@@ -1,6 +1,6 @@
-const Model = require('../produto/produto-table')
+const Model = require('../produto-table')
 const { Op } = require('sequelize');
-const notFound = require('../../libs/produtoNotFoundError')
+const notFound = require('../../../libs/produtoNotFoundError')
 
 module.exports = {
     listar(){
