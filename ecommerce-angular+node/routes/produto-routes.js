@@ -27,6 +27,16 @@ const produtosController = require('../controllers/produtos/produtos-controller'
 
     route.delete('/deleteProduto/:idproduto',async(req,res)=>{
         const dados = req.body;
+        try{
+            const id = req.params.idproduto
+            const produto = new produtosController({id: id})
+            await produto.carregar()
+            await produto.remover()
+            res.status(204)
+            res.end()
+        }catch(erro){
+            next(erro)
+        }
     })
     
 

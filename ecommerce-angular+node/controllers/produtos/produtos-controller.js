@@ -53,13 +53,9 @@ class Produtos {
     async atualizar() {
    
     }
-  
-    async login_account() {
-
-    }
 
     remover() {
-
+        return ProdutoTransactions.remover(this.id)
     }
 
     validar(){
