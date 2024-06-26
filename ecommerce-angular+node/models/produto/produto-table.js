@@ -30,7 +30,7 @@ const Produtos = conexao.define('produtos', {
         allowNull: false
     },
     ativo: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         allowNull: false
     }
 }, {

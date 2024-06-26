@@ -52,8 +52,8 @@ class Produtos {
     }
   
     async atualizar() {
-        const codexistente = await ProdutoTransactions.findId({ id: this.id })
-        const campos = ['id', 'codigo_cor', 'codigo_voltagem', 'descricao', 'descricao_completa', 'data_cadastro', 'ativo']
+        await ProdutoTransactions.findId({ id: this.id })
+        const campos = ['codigo_cor', 'codigo_voltagem', 'descricao', 'descricao_completa', 'data_cadastro', 'ativo']
         const dadosAtualizar = {}
   
         campos.forEach((campo) => {
@@ -62,7 +62,7 @@ class Produtos {
                 dadosAtualizar[campo] = valor
             }
         })
-  
+
         if(Object.keys(dadosAtualizar).length === 0){
          throw new notFound();
         }
