@@ -22,7 +22,17 @@ const produtosController = require('../controllers/produtos/produtos-controller'
     })
 
     route.put('/updateProduto/:idproduto',async(req,res)=>{
-        const dados = req.body;
+        try{
+            const id = req.params.idproduto
+            const dadosRecebidos = req.body
+            const dados = Object.assign({},dadosRecebidos,{id : id})
+            const produto = new produtosController(dados)
+            await produto.atualizar()
+            res.status(204)
+            res.end()
+        }catch(erro){
+            next(erro)
+        }
     })
 
     route.delete('/deleteProduto/:idproduto',async(req,res)=>{

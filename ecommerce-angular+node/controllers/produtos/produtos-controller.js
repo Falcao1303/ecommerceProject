@@ -1,5 +1,6 @@
 const ProdutoTransactions = require ('../../models/produto/tables/transactions')
 const InvalidData = require ('../../libs/invalidData')
+const notFound = require('../../libs/produtoNotFoundError')
 
 
 class Produtos {
@@ -51,7 +52,21 @@ class Produtos {
     }
   
     async atualizar() {
-   
+        const codexistente = await ProdutoTransactions.findId({ id: this.id })
+        const campos = ['id', 'codigo_cor', 'codigo_voltagem', 'descricao', 'descricao_completa', 'data_cadastro', 'ativo']
+        const dadosAtualizar = {}
+  
+        campos.forEach((campo) => {
+            const valor = this[campo]
+            if(valor !== undefined){
+                dadosAtualizar[campo] = valor
+            }
+        })
+  
+        if(Object.keys(dadosAtualizar).length === 0){
+         throw new notFound();
+        }
+        await ProdutoTransactions.atualizar(this.id, dadosAtualizar)
     }
 
     remover() {
