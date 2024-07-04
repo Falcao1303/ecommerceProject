@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { TelaCadastroComponent } from './tela-cadastro/tela-cadastro.component';
+import { LoginComponent } from './components/login/login.component';
+import { TelaCadastroComponent } from './components/tela-cadastro/tela-cadastro.component';
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'tela_cadastro',
+    path: 'cadastro',
     component: TelaCadastroComponent
   },
 ];
