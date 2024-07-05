@@ -12,6 +12,10 @@ export class TelaCadastroComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+  
+  cadastrarUsuario() {
     console.log(this.userRegister);
   }
 

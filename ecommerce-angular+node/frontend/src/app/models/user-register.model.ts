@@ -1,7 +1,12 @@
 export class UserRegister {
     constructor(
-      public Name = '',
-      public Surname = '',
-      public email= "",
+      public Nome = '',
+      public Sobrenome = '',
+      public Cpf = '',
+      public Telefone = '',
+      public Data_Nascimento = '',
+      public Login = '',
+      public Senha = '',
+      public Email= "",
     ) { }
   }

@@ -5,25 +5,37 @@
       <form>
         <div class="form-group">
           <label for="nome">Nome:</label>
-          <input type="text" class="form-control" id="nome" name="nome"   [(ngModel)]="userRegister.Name" #username="ngModel">
+          <input type="text" class="form-control" id="nome" name="nome"   [(ngModel)]="userRegister.Nome" #username="ngModel">
         </div>
         <div class="form-group">
           <label for="sobrenome">Sobrenome:</label>
-          <input type="text" class="form-control" id="sobrenome" name="sobrenome">
+          <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="userRegister.Sobrenome" #surname="ngModel">
         </div>
         <div class="form-group">
           <label for="nascimento">Data de Nascimento:</label>
-          <input type="date" class="form-control" id="nascimento" name="nascimento">
+          <input type="date" class="form-control" id="nascimento" name="nascimento"  [(ngModel)]="userRegister.Data_Nascimento" #birthday="ngModel">
         </div>
         <div class="form-group">
           <label for="cpf">CPF:</label>
-          <input type="text" class="form-control" id="cpf"  name="cpf">
+          <input type="text" class="form-control" id="cpf"  name="cpf"  [(ngModel)]="userRegister.Cpf" #cpf="ngModel">
         </div>
         <div class="form-group">
           <label for="telefone">Telefone:</label>
-          <input type="tel" class="form-control" id="telefone"  name="telefone">
+          <input type="tel" class="form-control" id="telefone"  name="telefone"  [(ngModel)]="userRegister.Telefone" #fone="ngModel">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+        <div class="form-group">
+          <label for="e-mail">E-mail:</label>
+          <input type="text" class="form-control" id="e-mail" name="email " [(ngModel)]="userRegister.Email" #email="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="nome">Login:</label>
+          <input type="text" class="form-control" id="login" name="login"   [(ngModel)]="userRegister.Login" #login="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="Senha">Senha:</label>
+          <input type="password" class="form-control" id="senha" name="Senha" [(ngModel)]="userRegister.Senha" #password="ngModel">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" (click)="cadastrarUsuario()">Cadastrar</button>
       </form>
       <p class="text-center">Já tem uma conta? <a routerLink="/login">Faça login</a></p>
     </div>
