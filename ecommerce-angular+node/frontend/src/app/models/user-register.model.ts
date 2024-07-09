@@ -8,5 +8,6 @@ export class UserRegister {
       public Login = '',
       public Senha = '',
       public Email= "",
+      public invalid = false
     ) { }
   }

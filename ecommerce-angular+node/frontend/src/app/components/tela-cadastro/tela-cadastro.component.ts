@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister } from '../../models/user-register.model'
 import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-tela-cadastro',

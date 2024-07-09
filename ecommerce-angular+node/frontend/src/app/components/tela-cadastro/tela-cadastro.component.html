@@ -38,7 +38,7 @@
           <label for="Senha">Senha:</label>
           <input type="password" class="form-control" id="senha" name="Senha" [(ngModel)]="registerForm.Senha" #password="ngModel">
         </div>
-        <!-- <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid" (click)="cadastrarUsuario()">Cadastrar</button> -->
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid" (click)="cadastrarUsuario()">Cadastrar</button>
       </form>
       <p class="text-center">Já tem uma conta? <a routerLink="/login">Faça login</a></p>
     </div>
