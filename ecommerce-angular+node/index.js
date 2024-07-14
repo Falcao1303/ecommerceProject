@@ -5,9 +5,20 @@ const produto_route = require('./routes/produto-routes')
 const database = require('./models/connection')
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const cors = require('cors');
+
 
 
 app.use(bodyParser.json());
+
+const corsOptions = {
+  origin: 'http://localhost:4200', // Substitua pelo endereço do seu front-end
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+
 
 
 // Configuração do middleware de sessão

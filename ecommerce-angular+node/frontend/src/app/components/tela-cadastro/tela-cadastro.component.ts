@@ -19,16 +19,17 @@ export class TelaCadastroComponent implements OnInit {
   
   cadastrarUsuario() {
     console.log(this.registerForm);
-    // if (this.registerForm) {
-    //   this.authService.register(this.registerForm).subscribe(
-    //     response => {
-    //       console.log('Cadastro realizado com sucesso!', response);
-    //     },
-    //     error => {
-    //       console.error('Erro no cadastro:', error);
-    //     }
-    //   );
-    // }
+    this.registerForm.nome = this.registerForm.nome + ' ' + this.registerForm.sobrenome;
+    if (this.registerForm) {
+      this.authService.register(this.registerForm).subscribe(
+        response => {
+          console.log('Cadastro realizado com sucesso!', response);
+        },
+        error => {
+          console.error('Erro no cadastro:', error);
+        }
+      );
+    }
   }
 
 }

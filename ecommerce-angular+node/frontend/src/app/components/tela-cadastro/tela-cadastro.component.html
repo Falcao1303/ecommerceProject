@@ -5,38 +5,38 @@
       <form>
         <div class="form-group">
           <label for="nome">Nome:</label>
-          <input type="text" class="form-control" id="nome" name="nome"   [(ngModel)]="registerForm.Nome" required #username="ngModel">
+          <input type="text" class="form-control" id="nome" name="nome"   [(ngModel)]="registerForm.nome" required #username="ngModel">
           <div *ngIf="username.invalid && (username.dirty || username.touched)">
             <div *ngIf="username.errors?.['required']">Nome é obrigatório.</div>
           </div>
         </div>
         <div class="form-group">
           <label for="sobrenome">Sobrenome:</label>
-          <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="registerForm.Sobrenome" #surname="ngModel">
+          <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="registerForm.sobrenome" #surname="ngModel">
         </div>
         <div class="form-group">
           <label for="nascimento">Data de Nascimento:</label>
-          <input type="date" class="form-control" id="nascimento" name="nascimento"  [(ngModel)]="registerForm.Data_Nascimento" #birthday="ngModel">
+          <input type="date" class="form-control" id="nascimento" name="nascimento"  [(ngModel)]="registerForm.data_nascimento" #birthday="ngModel">
         </div>
         <div class="form-group">
           <label for="cpf">CPF:</label>
-          <input type="text" class="form-control" id="cpf"  name="cpf"  [(ngModel)]="registerForm.Cpf" #cpf="ngModel">
+          <input type="text" class="form-control" id="cpf"  name="cpf"  [(ngModel)]="registerForm.cpf" #cpf="ngModel">
         </div>
         <div class="form-group">
           <label for="telefone">Telefone:</label>
-          <input type="tel" class="form-control" id="telefone"  name="telefone"  [(ngModel)]="registerForm.Telefone" #fone="ngModel">
+          <input type="tel" class="form-control" id="telefone"  name="telefone"  [(ngModel)]="registerForm.telefone" #fone="ngModel">
         </div>
         <div class="form-group">
           <label for="e-mail">E-mail:</label>
-          <input type="text" class="form-control" id="e-mail" name="email " [(ngModel)]="registerForm.Email" #email="ngModel">
+          <input type="text" class="form-control" id="e-mail" name="email " [(ngModel)]="registerForm.email" #email="ngModel">
         </div>
         <div class="form-group">
           <label for="nome">Login:</label>
-          <input type="text" class="form-control" id="login" name="login"   [(ngModel)]="registerForm.Login" #login="ngModel">
+          <input type="text" class="form-control" id="login" name="login"   [(ngModel)]="registerForm.login" #login="ngModel">
         </div>
         <div class="form-group">
           <label for="Senha">Senha:</label>
-          <input type="password" class="form-control" id="senha" name="Senha" [(ngModel)]="registerForm.Senha" #password="ngModel">
+          <input type="password" class="form-control" id="senha" name="Senha" [(ngModel)]="registerForm.senha" #password="ngModel">
         </div>
         <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid" (click)="cadastrarUsuario()">Cadastrar</button>
       </form>

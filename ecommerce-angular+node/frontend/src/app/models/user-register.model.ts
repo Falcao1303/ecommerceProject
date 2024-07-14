@@ -1,13 +1,13 @@
 export class UserRegister {
     constructor(
-      public Nome = '',
-      public Sobrenome = '',
-      public Cpf = '',
-      public Telefone = '',
-      public Data_Nascimento = '',
-      public Login = '',
-      public Senha = '',
-      public Email= "",
-      public invalid = false
+      public nome:string = '',
+      public sobrenome:string = '',
+      public cpf: string = '',
+      public telefone: string = '',
+      public data_nascimento: string = '',
+      public login: string = '',
+      public senha: string = '',
+      public email: string = '',
+      public invalid:boolean =  false
     ) { }
   }

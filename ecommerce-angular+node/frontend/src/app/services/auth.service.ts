@@ -7,11 +7,12 @@ import { UserRegister } from '../models/user-register.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://seu-endereco-api.com/api/register';
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
   register(user: UserRegister): Observable<any> {
-    return this.http.post<any>(this.apiUrl, user);
+    
+    return this.http.post<any>(this.apiUrl + "/usuarios/createUser", user);
   }
 }

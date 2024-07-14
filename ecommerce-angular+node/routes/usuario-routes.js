@@ -26,6 +26,7 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller.
     route.post('/usuarios/createUser',async(req,res,next)=>{
         try{
             const dados = req.body
+            console.log("DADOS FRONT",dados);
             const usuario = new UsuariosController(dados)
             await usuario.criar()
             res.status(201).json({ message: "Usuário criado com sucesso" });
