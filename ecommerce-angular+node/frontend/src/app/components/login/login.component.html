@@ -12,13 +12,13 @@
             <form>
               <div class="form-group">
                 <label for="login">Login:</label>
-                <input type="text" class="form-control" id="login" name="login">
+                <input type="text" class="form-control" id="login" name="login" [(ngModel)]="userLogin.login" required #login="ngModel">
               </div>
               <div class="form-group">
                 <label for="senha">Senha:</label>
-                <input type="password" class="form-control" id="senha" name="senha">
+                <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="userLogin.senha" required #password="ngModel">
               </div>
-              <button type="submit" class="btn btn-primary btn-block" id="btn-login">Login</button>
+              <button type="submit" class="btn btn-primary btn-block" id="btn-login" (click)="loginAuth()">Login</button>
             </form>
             <p class="text-center msg-login">Não tem uma conta? <a routerLink="/cadastro">Cadastre-se</a></p>
           </div>
