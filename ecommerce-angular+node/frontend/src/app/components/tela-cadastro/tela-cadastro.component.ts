@@ -18,7 +18,6 @@ export class TelaCadastroComponent implements OnInit {
   }
   
   cadastrarUsuario() {
-    console.log(this.registerForm);
     this.registerForm.nome = this.registerForm.nome + ' ' + this.registerForm.sobrenome;
     if (this.registerForm) {
       this.authService.register(this.registerForm).subscribe(
