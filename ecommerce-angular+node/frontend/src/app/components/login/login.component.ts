@@ -22,7 +22,7 @@ userLogin = new UserLogin();
           console.log( response);
         },
         error => {
-          console.error('Erro no login:', error.error.message);
+          console.error('Erro no login:', error);
           console.log('Login não efetuado!');
         }
       );
