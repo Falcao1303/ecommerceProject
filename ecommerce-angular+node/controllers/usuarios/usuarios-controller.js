@@ -72,25 +72,33 @@ class Usuarios {
       await UsuarioTransactions.atualizar(this.id, dadosAtualizar)
     }
   
-    async login_account() {
-      let usuarioCadastrado = await UsuarioTransactions.findUserLogin(this.login);
-      const senha = this.senha;
-    
-      if (!usuarioCadastrado) {
-        throw new Error("Credenciais inválidas");
+    async login_account(res, next) {
+      try {
+        let usuarioCadastrado = await UsuarioTransactions.findUserLogin(this.login);
+  
+        if (!usuarioCadastrado) {
+          return res.status(401).json({ message: 'Login incorreto' });
+        }
+  
+        // Verificar se a senha está correta
+        const senhaCorreta = await bcrypt.compare(this.senha, usuarioCadastrado.senha);
+  
+        if (!senhaCorreta) {
+          return res.status(401).json({ message: 'Senha incorreta' });
+        }
+  
+        // Gerar token JWT
+        const token = jwt.sign({ id: usuarioCadastrado.id, email: usuarioCadastrado.email }, process.env.SESSION_KEY, { expiresIn: '1h' });
+  
+        this.token = token;
+  
+        // Retorna uma resposta de sucesso com o token gerado
+        return res.status(200).json({ message: 'Login bem-sucedido', token: this.token });
+  
+      } catch (error) {
+        // Passa o erro para o middleware de erro
+        return next(error);
       }
-    
-      // Verificar se a senha está correta
-      const senhaCorreta = await bcrypt.compare(senha, usuarioCadastrado.senha);
-    
-      if (!senhaCorreta) {
-        throw new Error("Credenciais inválidas");
-      }
-
-      // Gerar token JWT
-      const token = jwt.sign({ id: usuarioCadastrado.id, email: usuarioCadastrado.email }, process.env.SESSION_KEY, { expiresIn: '1h' });
-
-      this.token = token;
     }
 
     remover() {

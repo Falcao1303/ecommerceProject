@@ -38,12 +38,10 @@ const UsuariosController = require('../controllers/usuarios/usuarios-controller.
         const { login, senha } = req.body;
         try {
             const usuario = new UsuariosController({login: login,senha: senha})
-            await usuario.login_account()
+            await usuario.login_account(res, next)
             req.session.usuarioId = usuario.login;
-            res.status(200).json(usuario);
         } catch (error) {
             next(error)
-            res.status(500);
         }
     });
 

@@ -8,12 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { TelaCadastroComponent } from './components/tela-cadastro/tela-cadastro.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TelaCadastroComponent
+    TelaCadastroComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
