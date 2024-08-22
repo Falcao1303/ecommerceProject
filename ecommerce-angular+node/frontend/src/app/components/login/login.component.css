@@ -58,3 +58,9 @@ body {
   margin-top: 10px;
   border-radius: 70px;
 }
+
+.text-danger {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}

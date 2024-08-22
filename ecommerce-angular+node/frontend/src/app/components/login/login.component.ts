@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserLogin} from '../../models/user/user-login.model';
 import {AuthService} from '../../services/auth.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,24 +9,38 @@ import {AuthService} from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 userLogin = new UserLogin();
-  constructor(private authService: AuthService) { }
+loginError = false;
+senhaError = false;
+
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   loginAuth() {
+    this.loginError = false;
+    this.senhaError = false;
+
     if (this.userLogin) {
       this.authService.login(this.userLogin).subscribe(
         response => {
-          console.log('Login efetuado com sucesso!');
+          this.router.navigate(['/home']);
           console.log( response);
         },
         error => {
-          console.error('Erro no login:', error);
-          console.log('Login não efetuado!');
+          if (error.includes('Login')) {
+            this.loginError = true;
+          } else if (error.includes('Senha')) {
+            this.senhaError = true;
+          }
         }
       );
     }
+  }
+
+  onInputChange() {
+    this.loginError = false;
+    this.senhaError = false;
   }
 
 }
