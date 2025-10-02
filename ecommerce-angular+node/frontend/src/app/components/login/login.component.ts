@@ -8,26 +8,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-userLogin = new UserLogin();
-loginError = false;
-senhaError = false;
+  userLogin = new UserLogin();
+  loginError = false;
+  senhaError = false;
+  isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log('LoginComponent inicializado');
   }
 
   loginAuth() {
     this.loginError = false;
     this.senhaError = false;
+    this.isLoading = true;
 
     if (this.userLogin) {
       this.authService.login(this.userLogin).subscribe(
         response => {
+          this.isLoading = false;
           this.router.navigate(['/home']);
-          console.log( response);
+          console.log(response);
         },
         error => {
+          this.isLoading = false;
           if (error.includes('Login')) {
             this.loginError = true;
           } else if (error.includes('Senha')) {
@@ -35,6 +40,8 @@ senhaError = false;
           }
         }
       );
+    } else {
+      this.isLoading = false;
     }
   }
 
@@ -42,5 +49,4 @@ senhaError = false;
     this.loginError = false;
     this.senhaError = false;
   }
-
 }

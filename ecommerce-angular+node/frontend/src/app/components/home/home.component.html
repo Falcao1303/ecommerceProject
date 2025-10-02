@@ -1,1 +1,109 @@
-<p>home works!</p>
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="#" class="navbar-brand">E-Commerce</a>
+    
+    <ul class="navbar-nav">
+      <li><a href="#" class="nav-link">Início</a></li>
+      <li><a href="#" class="nav-link">Produtos</a></li>
+      <li><a href="#" class="nav-link">Categorias</a></li>
+      <li><a href="#" class="nav-link">Sobre</a></li>
+    </ul>
+    
+    <div class="navbar-user">
+      <div class="user-avatar" title="Perfil do usuário">
+        {{ getUserInitials() }}
+      </div>
+      <button class="btn-logout" (click)="logout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <section class="hero-section fade-in">
+    <h1 class="hero-title">Bem-vindo ao nosso E-Commerce!</h1>
+    <p class="hero-subtitle">
+      Descubra os melhores produtos com a melhor experiência de compra online.
+    </p>
+    
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="stat-number">1000+</div>
+        <div class="stat-label">Produtos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Clientes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Categorias</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Suporte</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <h2 class="section-title">Nossas Funcionalidades</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🛒</div>
+        <h3 class="feature-title">Carrinho Inteligente</h3>
+        <p class="feature-description">
+          Sistema de carrinho avançado com salvamento automático e sugestões personalizadas.
+        </p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🚚</div>
+        <h3 class="feature-title">Entrega Rápida</h3>
+        <p class="feature-description">
+          Entregamos seus produtos com rapidez e segurança, com rastreamento em tempo real.
+        </p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">💳</div>
+        <h3 class="feature-title">Pagamento Seguro</h3>
+        <p class="feature-description">
+          Múltiplas opções de pagamento com segurança de dados garantida e criptografia.
+        </p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📱</div>
+        <h3 class="feature-title">App Mobile</h3>
+        <p class="feature-description">
+          Acesse nossa plataforma de qualquer dispositivo com interface responsiva.
+        </p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">⭐</div>
+        <h3 class="feature-title">Avaliações</h3>
+        <p class="feature-description">
+          Sistema de avaliações e comentários para ajudar na sua decisão de compra.
+        </p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Recomendações</h3>
+        <p class="feature-description">
+          Algoritmo inteligente que sugere produtos baseados no seu histórico de compras.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section fade-in">
+    <h2 class="cta-title">Comece sua jornada conosco!</h2>
+    <p class="cta-description">
+      Explore nosso catálogo completo e encontre exatamente o que você procura.
+    </p>
+    <a href="#" class="btn-cta">Explorar Produtos</a>
+  </section>
+</main>

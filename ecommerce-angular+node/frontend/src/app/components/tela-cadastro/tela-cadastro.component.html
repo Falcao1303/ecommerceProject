@@ -1,46 +1,172 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <h2 class="text-center">Cadastro</h2>
-      <form>
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h1 class="register-title">Criar Conta</h1>
+      <p class="register-subtitle">Preencha os dados abaixo para criar sua conta</p>
+    </div>
+    
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+    
+    <form #cadastroForm="ngForm" (ngSubmit)="cadastrarUsuario()">
+      <div class="form-row">
         <div class="form-group">
-          <label for="nome">Nome:</label>
-          <input type="text" class="form-control" id="nome" name="nome"   [(ngModel)]="registerForm.nome" required #username="ngModel">
-          <div *ngIf="username.invalid && (username.dirty || username.touched)">
-            <div *ngIf="username.errors?.['required']">Nome é obrigatório.</div>
+          <label for="nome" class="required">Nome</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nome" 
+            name="nome" 
+            [(ngModel)]="registerForm.nome" 
+            required 
+            #nomeInput="ngModel"
+            placeholder="Seu nome"
+            autocomplete="given-name">
+          <div *ngIf="nomeInput.invalid && nomeInput.touched" class="text-danger">
+            Nome é obrigatório.
+          </div>
+          <div *ngIf="nomeInput.valid && nomeInput.touched" class="text-success">
+            Nome válido.
           </div>
         </div>
+        
         <div class="form-group">
-          <label for="sobrenome">Sobrenome:</label>
-          <input type="text" class="form-control" id="sobrenome" name="sobrenome" [(ngModel)]="registerForm.sobrenome" #surname="ngModel">
+          <label for="sobrenome">Sobrenome</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="sobrenome" 
+            name="sobrenome" 
+            [(ngModel)]="registerForm.sobrenome" 
+            #sobrenomeInput="ngModel"
+            placeholder="Seu sobrenome"
+            autocomplete="family-name">
         </div>
+      </div>
+      
+      <div class="form-row">
         <div class="form-group">
-          <label for="nascimento">Data de Nascimento:</label>
-          <input type="date" class="form-control" id="nascimento" name="nascimento"  [(ngModel)]="registerForm.data_nascimento" #birthday="ngModel">
+          <label for="nascimento">Data de Nascimento</label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="nascimento" 
+            name="nascimento" 
+            [(ngModel)]="registerForm.data_nascimento" 
+            #nascimentoInput="ngModel"
+            autocomplete="bday">
         </div>
+        
         <div class="form-group">
-          <label for="cpf">CPF:</label>
-          <input type="text" class="form-control" id="cpf"  name="cpf"  [(ngModel)]="registerForm.cpf" #cpf="ngModel" mask="000.000.000-00">
+          <label for="cpf">CPF</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="cpf" 
+            name="cpf" 
+            [(ngModel)]="registerForm.cpf" 
+            #cpfInput="ngModel" 
+            mask="000.000.000-00"
+            placeholder="000.000.000-00">
         </div>
+      </div>
+      
+      <div class="form-row">
         <div class="form-group">
-          <label for="telefone">Telefone:</label>
-          <input type="tel" class="form-control" id="telefone"  name="telefone"  [(ngModel)]="registerForm.telefone" #fone="ngModel">
+          <label for="telefone">Telefone</label>
+          <input 
+            type="tel" 
+            class="form-control" 
+            id="telefone" 
+            name="telefone" 
+            [(ngModel)]="registerForm.telefone" 
+            #telefoneInput="ngModel" 
+            mask="(00) 0 0000-0000"
+            placeholder="(00) 0 0000-0000"
+            autocomplete="tel">
         </div>
+        
         <div class="form-group">
-          <label for="e-mail">E-mail:</label>
-          <input type="text" class="form-control" id="e-mail" name="email " [(ngModel)]="registerForm.email" #email="ngModel">
+          <label for="email" class="required">E-mail</label>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            [(ngModel)]="registerForm.email" 
+            required 
+            email
+            #emailInput="ngModel"
+            placeholder="seu@email.com"
+            autocomplete="email">
+          <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger">
+            <span *ngIf="emailInput.errors?.['required']">E-mail é obrigatório.</span>
+            <span *ngIf="emailInput.errors?.['email']">E-mail inválido.</span>
+          </div>
+          <div *ngIf="emailInput.valid && emailInput.touched" class="text-success">
+            E-mail válido.
+          </div>
         </div>
+      </div>
+      
+      <div class="form-row">
         <div class="form-group">
-          <label for="nome">Login:</label>
-          <input type="text" class="form-control" id="login" name="login"   [(ngModel)]="registerForm.login" #login="ngModel">
+          <label for="login" class="required">Usuário</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="login" 
+            name="login" 
+            [(ngModel)]="registerForm.login" 
+            required
+            minlength="3"
+            #loginInput="ngModel"
+            placeholder="Nome de usuário"
+            autocomplete="username">
+          <div *ngIf="loginInput.invalid && loginInput.touched" class="text-danger">
+            <span *ngIf="loginInput.errors?.['required']">Usuário é obrigatório.</span>
+            <span *ngIf="loginInput.errors?.['minlength']">Usuário deve ter pelo menos 3 caracteres.</span>
+          </div>
+          <div *ngIf="loginInput.valid && loginInput.touched" class="text-success">
+            Usuário válido.
+          </div>
         </div>
+        
         <div class="form-group">
-          <label for="Senha">Senha:</label>
-          <input type="password" class="form-control" id="senha" name="Senha" [(ngModel)]="registerForm.senha" #password="ngModel">
+          <label for="senha" class="required">Senha</label>
+          <input 
+            type="password" 
+            class="form-control" 
+            id="senha" 
+            name="senha" 
+            [(ngModel)]="registerForm.senha" 
+            required
+            minlength="6"
+            #senhaInput="ngModel"
+            placeholder="Mínimo 6 caracteres"
+            autocomplete="new-password">
+          <div *ngIf="senhaInput.invalid && senhaInput.touched" class="text-danger">
+            <span *ngIf="senhaInput.errors?.['required']">Senha é obrigatória.</span>
+            <span *ngIf="senhaInput.errors?.['minlength']">Senha deve ter pelo menos 6 caracteres.</span>
+          </div>
+          <div *ngIf="senhaInput.valid && senhaInput.touched" class="text-success">
+            Senha válida.
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid" (click)="cadastrarUsuario()">Cadastrar</button>
-      </form>
-      <p class="text-center">Já tem uma conta? <a routerLink="/login">Faça login</a></p>
+      </div>
+      
+      <button 
+        type="submit" 
+        class="btn-register"
+        [class.loading]="isLoading"
+        [disabled]="cadastroForm.invalid || isLoading">
+        {{ isLoading ? 'Cadastrando...' : 'Criar Conta' }}
+      </button>
+    </form>
+    
+    <div class="register-footer">
+      <p>Já tem uma conta? <a routerLink="/login">Faça login aqui</a></p>
     </div>
   </div>
 </div>

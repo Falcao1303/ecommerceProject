@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegister } from '../../models/user/user-register.model'
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-cadastro',
@@ -11,24 +11,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class TelaCadastroComponent implements OnInit {
   registerForm = new UserRegister();
-  constructor( private authService: AuthService) { }
+  isLoading = false;
+  successMessage = '';
+  
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
   }
   
   cadastrarUsuario() {
-    this.registerForm.nome = this.registerForm.nome + ' ' + this.registerForm.sobrenome;
+    this.isLoading = true;
+    this.successMessage = '';
+    
+    // Combinar nome e sobrenome
+    const fullName = this.registerForm.nome + (this.registerForm.sobrenome ? ' ' + this.registerForm.sobrenome : '');
+    const userData = { ...this.registerForm, nome: fullName };
+    
     if (this.registerForm) {
-      this.authService.register(this.registerForm).subscribe(
+      this.authService.register(userData).subscribe(
         response => {
-          console.log( response.message );
+          this.isLoading = false;
+          this.successMessage = 'Cadastro realizado com sucesso! Redirecionando para o login...';
+          console.log(response);
+          
+          // Redirecionar para login após 2 segundos
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 2000);
         },
         error => {
+          this.isLoading = false;
+          console.log(error);
           console.error('Erro no cadastro:', error);
         }
       );
+    } else {
+      this.isLoading = false;
     }
   }
-
 }
